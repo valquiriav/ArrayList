@@ -17,9 +17,7 @@ public class Test {
 
         shoppingList.print();
 
-        System.out.println(shoppingList.size());
-
-        //Remove não funciona e ao adicionar mais de 10 também não funciona
+        System.out.println(shoppingList.size);
 
     }
 }

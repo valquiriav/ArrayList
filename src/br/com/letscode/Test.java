@@ -17,7 +17,11 @@ public class Test {
 
         shoppingList.print();
 
-        System.out.println(shoppingList.size);
+        System.out.println(shoppingList.getSize());
+
+        shoppingList.remove(2);
+
+        shoppingList.print();
 
     }
 }

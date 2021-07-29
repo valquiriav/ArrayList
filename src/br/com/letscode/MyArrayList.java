@@ -4,8 +4,6 @@ public class MyArrayList {
 
     //create array attribute
     private Object[] myArray;
-    //create true size attribute
-    int size;
 
     //creating constructor method
     public MyArrayList() {
@@ -13,42 +11,59 @@ public class MyArrayList {
         this.myArray = new Object[10];
     }
 
-    public int setSize() {
-        for (size = 0; size < myArray.length; size++) {
-            if (myArray[size] == null) {
-                break;
+    //constructor to receive arguments
+    public MyArrayList(int tamanho) {
+        //default value is an array
+        this.myArray = new Object[tamanho];
+    }
+
+
+    public int getSize() {
+        int size = 0;
+        for (int i = 0; i < myArray.length; i++) {
+            if (myArray[i] == null) {
+                return size;
+            } else {
+                size++;
             }
         }
         return size;
     }
 
-    public Object getValue(int index) {
-        return this.myArray[index];
+    public Object get(int index) {
+        return myArray[index];
+    }
+
+    public void set(int index, Object value){
+        myArray[index] = value;
     }
 
     public void add(Object value){
-        if (size < myArray.length){
-            myArray[this.size++] = value;
-        } else {
-            this.increase();
+        if (this.getSize() == myArray.length){
+            Object[] tempArray = new Object[myArray.length * 2];
+            for (int i = 0; i < myArray.length; i++){
+                tempArray[i] = myArray[i];
+            }
+            myArray = tempArray;
         }
+        myArray[this.getSize()] = value;
     }
 
-    public void increase(){
-        Object[] tempArray = new Object[size * 2];
-        //TODO
-    }
 
     public void remove(int index){
-        //TODO
+        Object[] tempArray = new Object[myArray.length];
+        for (int i = 0; i < index; i++){
+            tempArray[i] = myArray[i];
+        }
+        for (int j = index + 1; j < myArray.length; j++){
+            tempArray[j - 1] = myArray[j];
+        }
+        myArray = tempArray;
     }
 
     public void print(){
-
-        for (int i = 0; i < size; i++){
-            System.out.println(myArray[i]);
+        for (int i = 0; i < this.getSize(); i++){
+            System.out.println(this.get(i));
         }
-
     }
-
 }
